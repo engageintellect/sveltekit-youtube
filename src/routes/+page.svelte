@@ -39,8 +39,21 @@
 	</div>
 </div>
 
-<div>
-	{#if data}
-		{JSON.stringify(data)}
-	{/if}
-</div>
+{#if data}
+	<div class="grid grid-cols-3 gap-4 pt-4">
+		{#each data.items as item}
+			<div
+				class="w-full border shadow-md hover:shadow-lg transition-all duration-200 h-64 rounded-lg"
+			>
+				<div class="p-4">
+					<div class="font-thin text-md">{item.snippet.channelTitle}</div>
+					<div class="font-semibold text-sm">{item.snippet.title}</div>
+					<div>
+						<img src={item.snippet.thumbnails.default.url} alt="" />
+					</div>
+					<div class="text-xs">{item.snippet.description}</div>
+				</div>
+			</div>
+		{/each}
+	</div>
+{/if}
