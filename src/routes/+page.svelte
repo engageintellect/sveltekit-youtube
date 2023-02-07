@@ -20,19 +20,22 @@
 		<div class="capitalize font-bold text-5xl text-center">YouTube API</div>
 		<div class="flex justify-center pt-4">
 			<div>
-				{#if term}
+				<!-- {#if term}
 					<div><span class="font-bold">You're search: </span>{term}</div>
-				{/if}
+				{/if} -->
 				<div>
-					<input
-						class="border shadow-md px-2 text-neutral-900"
-						placeholder="Search..."
-						type="text"
-						bind:value={term}
-					/>
-					<button class="bg-neutral-500 text-white px-2 shadow-md" on:click={() => getData()}
-						>search</button
-					>
+					<div>
+						<input
+							class="border shadow-md px-2 text-neutral-900"
+							placeholder="Search..."
+							type="text"
+							bind:value={term}
+						/>
+
+						<button class="bg-neutral-500 text-white px-2 shadow-md" on:click={() => getData()}
+							>search</button
+						>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -42,16 +45,21 @@
 {#if data}
 	<div class="grid grid-cols-3 gap-4 pt-4">
 		{#each data.items as item}
-			<div
-				class="w-full border shadow-md hover:shadow-lg transition-all duration-200 h-64 rounded-lg"
-			>
-				<div class="p-4">
-					<div class="font-thin text-md">{item.snippet.channelTitle}</div>
-					<div class="font-semibold text-sm">{item.snippet.title}</div>
-					<div>
-						<img src={item.snippet.thumbnails.default.url} alt="" />
+			<div class="w-full border shadow-md transition-all group duration-200 rounded-lg">
+				<div class="bg-neutral-900 overflow-hidden relative">
+					<img
+						src={item.snippet.thumbnails.high.url}
+						alt=""
+						class="rounded-md group-hover:scale-105 object-cover group-hover:opacity-10 transition-all duration-200"
+					/>
+
+					<div
+						class="absolute text-white top-0 z-50 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500"
+					>
+						<div class="font-thin text-md">{item.snippet.channelTitle}</div>
+						<div class="font-semibold text-sm">{item.snippet.title}</div>
+						<div class="text-xs">{item.snippet.description}</div>
 					</div>
-					<div class="text-xs">{item.snippet.description}</div>
 				</div>
 			</div>
 		{/each}
