@@ -16,7 +16,9 @@
 </script>
 
 <div class="">
-	<div class="bg-neutral-800 py-10  text-white flex flex-col justify-center items-center">
+	<div
+		class="bg-neutral-800 py-10  text-white flex flex-col justify-center items-center rounded-md"
+	>
 		<div class="capitalize font-bold text-5xl text-center">YouTube API</div>
 		<div class="flex justify-center pt-4">
 			<div>
@@ -45,12 +47,12 @@
 {#if data}
 	<div class="grid grid-cols-3 gap-4 pt-4">
 		{#each data.items as item}
-			<div class="w-full border shadow-md transition-all group duration-200 rounded-lg">
-				<div class="bg-neutral-900 overflow-hidden relative">
+			<div class="w-full shadow-md transition-all group duration-200 rounded-mdg">
+				<div class="bg-neutral-800 overflow-hidden relative rounded-md">
 					<img
 						src={item.snippet.thumbnails.high.url}
 						alt=""
-						class="rounded-md group-hover:scale-105 object-cover group-hover:opacity-10 transition-all duration-200"
+						class="group-hover:scale-105 object-cover group-hover:opacity-10 transition-all duration-200"
 					/>
 
 					<div
