@@ -6,7 +6,7 @@
 
 <div class="">
 	<Nav />
-	<main class="max-w-5xl px-2 mx-auto min-h-screen py-10">
+	<main class="max-w-7xl px-2 mx-auto min-h-screen py-10">
 		<slot />
 	</main>
 	<Footer />

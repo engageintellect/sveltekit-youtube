@@ -17,9 +17,9 @@
 
 <div class="">
 	<div
-		class="bg-neutral-800 py-10  text-white flex flex-col justify-center items-center rounded-md"
+		class="bg-neutral-800 min-h-72 py-10  text-white flex flex-col justify-center items-center rounded-md"
 	>
-		<div class="capitalize font-bold text-5xl text-center">YouTube API</div>
+		<div class="capitalize font-bold text-5xl text-center">{term || 'YouTube API'}</div>
 		<div class="flex justify-center pt-4">
 			<div>
 				<!-- {#if term}
@@ -28,14 +28,15 @@
 				<div>
 					<div>
 						<input
-							class="border shadow-md px-2 text-neutral-900"
+							class="shadow-md px-2 bg-neutral-700 focus:bg-neutral-600 outline-none text-white"
 							placeholder="Search..."
 							type="text"
 							bind:value={term}
 						/>
 
-						<button class="bg-neutral-500 text-white px-2 shadow-md" on:click={() => getData()}
-							>search</button
+						<button
+							class="bg-neutral-500 text-white px-2 shadow-md outline-none"
+							on:click={() => getData()}>search</button
 						>
 					</div>
 				</div>
@@ -45,25 +46,37 @@
 </div>
 
 {#if data}
-	<div class="grid grid-cols-3 gap-4 pt-4">
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 pt-4">
 		{#each data.items as item}
-			<div class="w-full shadow-md transition-all group duration-200 rounded-mdg">
-				<div class="bg-neutral-800 overflow-hidden relative rounded-md">
-					<img
-						src={item.snippet.thumbnails.high.url}
-						alt=""
-						class="group-hover:scale-105 object-cover group-hover:opacity-10 transition-all duration-200"
-					/>
-
+			<a
+				href={`https://www.youtube.com/watch?v=${item.id.videoId}`}
+				target="_blank"
+				rel="noreferrer"
+			>
+				<div class="w-full h-full transition-all group duration-200 rounded-lg">
 					<div
-						class="absolute text-white top-0 z-50 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500"
+						class="overflow-hidden shadow-md hover:shadow-lg relative rounded-md h-full flex-col flex justify-center"
 					>
-						<div class="font-thin text-md">{item.snippet.channelTitle}</div>
-						<div class="font-semibold text-sm">{item.snippet.title}</div>
-						<div class="text-xs">{item.snippet.description}</div>
+						<img
+							src={item.snippet.thumbnails.high.url}
+							alt=""
+							class="group-hover:scale-105 group-hover:blur-sm object-cover group-hover:opacity-20 transition-all duration-200"
+						/>
+
+						<div
+							class="absolute top-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-500"
+						>
+							<div class="text-lg">{item.snippet.description}</div>
+						</div>
+						<div class="h-full p-4">
+							<div class="neutral-500 rounded-md font-bold">
+								{item.snippet.channelTitle}
+							</div>
+							<div class="">{item.snippet.title}</div>
+						</div>
 					</div>
 				</div>
-			</div>
+			</a>
 		{/each}
 	</div>
 {/if}
